@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+      *{
+        padding: 0px; 
+        margin: 0px;
+        box-sizing: border-box;
+        font-family: 'Poppins' Sans-Serif;
+      }
+      :root{
+        --bg: #e0e5ec;
+        --shadow-dark: #a3b1c6;
+        --shadow-light: #ffffff;
+        --text: #4a5568;
+        --text-muted: #8a9bb0;
+        --blue: #4d7cfe;
+        --pink: #fe4d94;
+        --teal: #4dfed7;
+        --purple: #a64dfe;
+        --green: #4dfe9a;
+        --cyan: #4dc8fe;
+      }
+      body{
+        background-color: var(--bg);
+        height: 100vh; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+      }
+      .container{
+        height: auto;
+        border-radius: 15px; 
+        width: 380px;
+        background-color: var(--bg);
+        box-shadow: -6px -6px 12px var(--shadow-light),
+              6px 6px 12px var(--shadow-dark);
+        padding: 20px 15px;
+      }
+      .row-1{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+      }
+      .row-1 button{
+        color: var(--text);
+        background-color: var(--bg-color);
+        border-radius: 10px; 
+        border: none;
+        outline: none; 
+        padding: 5px 10px;
+        box-shadow: -6px -6px 12px var(--shadow-light),
+              6px 6px 12px var(--shadow-dark);
+        transition: .5s ease;
+      }
+      .row-1 button:active{
+        box-shadow:inset -2px -2px 5px var(--shadow-dark),
+              2px 2px 5px var(--shadow-light);
+      }
+      #logo{
+        width: 42px; height: 42px;
+        border-radius: 50%;
+        box-shadow: var(--neu-out-sm);
+        background: linear-gradient(135deg, #f5a3d5, #d580ff);
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-weight: 700; font-size: 0.85rem;
+        box-shadow: -6px -6px 12px var(--shadow-light),
+              6px 6px 12px var(--shadow-dark);
+      }
+      
+      .ui{
+        width: 70px; height: 70px;
+        background: linear-gradient(135deg, #f5a3d5, #d580ff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        color: var(--bg);
+        border-radius: 20px;
+        box-shadow: -6px -6px 12px var(--shadow-light),
+              6px 6px 12px var(--shadow-dark);
+        margin-bottom: 2rem;
+      }
+      
+      .radio-div{
+        margin-bottom: 2rem;
+        display: flex;
+        gap: .75rem;
+        margin-bottom: 2rem;
+      }
+      .radio-div .radio-btn{
+        width: 22px; height: 22px;
+        background: var(--bg);
+        border: none; outline: none;
+        border-radius: 50%;
+        box-shadow:inset -3px -3px 7px var(--shadow-dark),
+              3px 3px 7px var(--shadow-light);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .radio-div .radio-btn.active{
+        box-shadow:inset -2px -2px 5px var(--shadow-dark),
+              2px 2px 5px var(--shadow-light);
+      }
+      .radio-div .radio-btn.active::after{
+        content: '';
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: var(--blue);
+      }
+      
+      .checkbox-div{
+        margin-bottom: 1rem;
+      }
+      .checkbox-div .toggle{
+        box-shadow:inset -2px -2px 5px var(--shadow-dark),
+              2px 2px 5px var(--shadow-light);
+        background: var(--bg);
+        width: 52px; height: 28px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .checkbox-div .toggle .toggle-knob{
+        background: var(--bg);
+        height: 21px; width: 21px;
+        border-radius: 50%;
+        align-self: flex-start;
+        box-shadow: 2px 2px 5px var(--shadow-dark), -1px -1px 4px var(--shadow-light);
+        transition: .3s ease;
+      }
+      .checkbox-div .toggle.on{
+        background: var(--blue);
+        box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);;
+      }
+      .checkbox-div .toggle.on .toggle-knob{
+        align-self: flex-end;
+        transform: translateX(-4px);
+      }
+      
+      .search-area{
+        width: 100%;
+      }
+      .search-area .search-input{
+        box-shadow:inset 4px 4px 8px var(--shadow-dark),
+            -4px -4px 8px var(--shadow-light);
+        border: none;
+        outline: none; 
+        border-radius: 15px;
+        padding: 10px 15px;
+        width: 100%;
+        background: var(--bg);
+        color: var(--text);
+      }
+      
+      .middle-btn{
+        margin-top: 2rem;
+        width: 100%;
+        padding: 10px 8px;
+        border: none; outline: none;
+        background: var(--bg);
+        box-shadow: -6px -6px 12px var(--shadow-light),
+            6px 6px 12px var(--shadow-dark);
+        border-radius: 15px;
+        transform: .5s ease;
+      }
+      .middle-btn:active{
+        box-shadow:inset 4px 4px 8px var(--shadow-dark),
+            -4px -4px 8px var(--shadow-light);
+      }
+      
+      .save-row{
+        margin-top: 1rem;
+        display: flex;
+        width: 70%;
+        justify-content: space-around;
+      }
+      .save-row div{
+        padding: 10px;
+        height: 45px; width: 45px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--bg);
+        box-shadow: -6px -6px 12px var(--shadow-light),
+            6px 6px 12px var(--shadow-dark);
+      }
+      .save-row div i{
+        color: var(--text);
+      }
+      .save-row div:active{
+        box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+      }
+      .save-row .like-btn i:hover{
+        color: red;
+      }
+      .save-row .square-btn i:hover{
+        color: #202020;
+      }
+      .save-row .bookmark-btn i:hover{
+        color: blue;
+      }
+      
+      .share-row{
+        margin-top: 1rem;
+      }
+      .share-row .share-btn,.add-btn{
+        padding: 10px 15px;
+        box-shadow: -6px -6px 12px var(--shadow-light),
+            6px 6px 12px var(--shadow-dark);
+        border: none;
+        outline: none;
+        margin-left: 10px;
+        height: 40px;
+        background: var(--bg);
+      }
+      .share-row button:active{
+        box-shadow:inset 4px 4px 8px var(--shadow-dark),
+            -4px -4px 8px var(--shadow-light);
+      }
+      .share-row .share-btn{
+        border-radius: 8px;
+      }
+      .share-row .add-btn{
+        width: 40px;
+        border-radius: 50%;
+      }
+      
+      .player-btns{
+        margin-top: 1rem;
+        width: 100%;
+      }
+      .player-btns button{
+        height: 40px; width: 40px;
+        border: none; outline: none;
+        box-shadow: -6px -6px 12px var(--shadow-light),
+            6px 6px 12px var(--shadow-dark);
+        border-radius: 10px;
+        background: var(--bg);
+        margin-left: 10px;
+      }
+      .player-btns button i{
+        color: var(--text);
+      }
+      .player-btns button:active{
+        box-shadow:inset 4px 4px 8px var(--shadow-dark),
+            -4px -4px 8px var(--shadow-light);
+      }
+      .player-btns select{
+        border: none; outline: none;
+        width: 40%; height: 40px;
+        border-radius: 10px;
+        margin-left: 10px;
+        padding: 0px 10px;
+        color: var(--text);
+        background: var(--bg);
+        box-shadow: -6px -6px 12px var(--shadow-light),
+            6px 6px 12px var(--shadow-dark);
+      }
+      
+      .ranges{
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .ranges input{
+        -webkit-appearance: none;
+        background: var(--bg);
+        border-radius: 10px;
+        box-shadow:inset 2px 2px 5px var(--shadow-dark),
+            -4px -4px 8px var(--shadow-light);
+        margin-top: 10px;
+        height: 8px;
+      }
+      .ranges input[type='range']::-webkit-slider-thumb{
+        -webkit-appearance: none;
+        height: 20px; width: 20px;
+        background: var(--bg);
+        box-shadow: -6px -6px 12px var(--shadow-light),
+            6px 6px 12px var(--shadow-dark);
+        border-radius: 50%;
+      }
+      
+      .colors{
+        width: 100%;
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+      }
+      .colors span{
+        box-shadow: -6px -6px 12px var(--shadow-light),
+            6px 6px 12px var(--shadow-dark);
+        height: 40px;width: 40px;
+        border-radius: 50%;
+      }
+      .colors span:active{
+        box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+      }
+      .colors span:nth-child(1){
+        background: #c0cfe8;
+      }
+      .colors span:nth-child(2){
+        background: linear-gradient(135deg, #8aacee, var(--blue));
+      }
+      .colors span:nth-child(3){
+        background: linear-gradient(135deg, #4054b8, #2a3a9c);
+      }
+      .colors span:nth-child(4){
+        background: linear-gradient(135deg, var(--pink), #ff88b5);
+      }
+      .colors span:nth-child(5){
+        background: linear-gradient(135deg, var(--teal), #20e8b8);
+      }
+      .colors span:nth-child(6){
+        background: linear-gradient(135deg, var(--green), #20d870);
+      }
+      
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row-1">
+      <button>More Like This</button> 
+      <button>save</button> 
+      <button id="permerlink">Permalink</button>
+      <span id="logo">A</span>
+    </div>
+    
+    <div class="ui">Ui</div>
+    <div class="radio-div">
+      <button class="radio-btn active" name="myradio" onclick="toggleRadio(this)"></button>
+      <button class="radio-btn" onclick="toggleRadio(this)" name="myradio"></button>
+    </div>
+    
+    <div class="checkbox-div">
+      <div class="toggle on" id="toggle1" onclick="toggleCheckbox('toggle1')">
+        <div class="toggle-knob"></div>
+      </div>
+    </div>
+    
+    <div class="search-area">
+      <input placeholder="Search for..." class="search-input"/>
+    </div>
+    
+    <button class="middle-btn">button</button>
+    
+    <div class="save-row">
+      <div class="like-btn">
+        <i class="fas fa-heart"></i>
+      </div>
+      <div class="square-btn">
+        <i class="fas fa-square"></i>
+      </div>
+      <div class="bookmark-btn">
+        <i class="fas fa-bookmark"></i>
+      </div>
+    </div>
+    
+    <div class="share-row">
+      <button class="share-btn">
+        <i class="fa fa-share-nodes"></i> Share
+      </button>
+      <button class="add-btn">
+        <i class="fa fa-add"></i>
+      </button>
+    </div>
+    
+    <div class="player-btns">
+      <button class="prev-btn">
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      <button class="play-btn">
+        <i class="fa fa-pause"></i>
+      </button>
+      <button class="next-btn">
+        <i class="fa fa-chevron-right"></i>
+      </button>
+      
+      <select>
+        <option selected disabled>select</option>
+        <option>option1</option>
+        <option>option2</option>
+        <option>option3</option>
+      </select>
+    </div>
+    
+    <div class="ranges">
+      <input type="range" value="75" min="1" max="100">
+      <input type="range" value="45" min="1" max="100">
+    </div>
+    
+    <div class="colors">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div><br>
+    <p style="text-align:center; color:var(--text)">&copy;2026 | <i>Kelvin Kevo</i></p>
+  </div>
+  
+  <script>
+    function toggleRadio(btn){
+      //alert('good')
+      document.querySelectorAll('.radio-btn').forEach(b => {
+        b.classList.remove('active');
+      })
+      btn.classList.add('active');
+    }
+    
+    function toggleCheckbox(id){
+      document.getElementById(id).classList.toggle('on');
+    }
+  </script>
+</body>
+</html>
